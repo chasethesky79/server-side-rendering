@@ -30,7 +30,7 @@ class App extends Component {
           <Header />
           <BrowserRouter>
             <Routes>
-              <Route path='/' element={<Feed/>} exact/>
+              <Route path='/questions' element={<Feed/>}/>
               <Route path='/questions/:id' element={<Question/>}/>
             </Routes>
           </BrowserRouter>
