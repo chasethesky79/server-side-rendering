@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card/Card';
+import { Link } from 'react-router-dom'
 
 const FeedWrapper = styled.div`
   display: flex;
@@ -55,8 +56,10 @@ class Feed extends Component {
 
     return (
       <FeedWrapper>
-        {data.items.map(item => (
-          <Card key={item.question_id} data={item} />
+        {data.items && data.items.map(item => (
+          <Link key={item.question_id} to={`/questions/${item.question_id}`}>
+            <Card key={item.question_id} data={item} />
+          </Link>
         ))}
       </FeedWrapper>
     );

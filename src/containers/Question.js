@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import Card from '../components/Card/Card'
 
 const QuestionWrapper = styled.div`
  display: flex;
@@ -25,8 +26,8 @@ const Question = () => {
     useEffect(() => {
         const getQuestion = async () => {
             try {
-                const URL = `${ROOT_API}questions/${id}?site=stackoverflow`;
-                const data = await fetch(URL, { mode: 'no-cors'})
+                const URL = `${ROOT_API}questions/${id}?order=desc&sort=activity&site=stackoverflow`;
+                const data = await fetch(URL)
                 const dataJSON = await data.json();
                 console.log(`ANSWER ${JSON.stringify(dataJSON)}`)
                 setState({...initialState, data: dataJSON, loading: false })
@@ -35,12 +36,14 @@ const Question = () => {
             }
           }
         getQuestion()
-    }, [])
+    })
 
     if (loading || error) {
         return (<Alert>{loading ? 'Loading...' : error}</Alert>)
     }
-    return (<QuestionWrapper></QuestionWrapper>)
+    return (<QuestionWrapper>
+        <Card data={data.items[0]}/>
+    </QuestionWrapper>)
 }
 
 export default Question
