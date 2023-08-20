@@ -19,6 +19,20 @@ const CardLink = styled(Link)`
  color: inherit;
 `
 
+const PaginationBar = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+const PaginationLink = styled(Link)`
+  padding: 1%;
+  background: lightBlue;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+`
+
 const ROOT_API = 'https://api.stackexchange.com/2.2/';
 
 class Feed extends Component {
@@ -66,6 +80,10 @@ class Feed extends Component {
             <Card key={item.question_id} data={item} />
           </CardLink>
         ))}
+        <PaginationBar>
+          <PaginationLink>Previous</PaginationLink>
+          <PaginationLink>Next</PaginationLink>
+        </PaginationBar>
       </FeedWrapper>
     );
   }
